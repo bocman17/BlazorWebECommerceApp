@@ -1,15 +1,13 @@
 ﻿.media-img {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 500px;
+    max-width: 500px;
     border-radius: 6px;
-    margin-bottom: 10px;
-    transition: transform .2s;
+    margin: 0 10px 10px 10px;
 }
-    .media-img:hover {
-        transform: scale(1.1);
-    }
+
 .media-img-wrapper {
-    width: 200px;
+    max-height: 500px;
+    max-width: 500px;
     text-align: center;
 }
 
@@ -17,6 +15,11 @@
     .media {
         flex-direction: column;
     }
+
+    .media-img {
+        max-width: 300px;
+    }
+
     .media-img-wrapper {
         width: 100%;
         height: auto;
