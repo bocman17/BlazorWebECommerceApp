@@ -10,8 +10,12 @@
     }
 .media-img-wrapper {
     width: 200px;
-    /*margin-right: 10px;*/
     text-align: center;
+}
+
+.page-selection {
+    margin-right: 15px;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 1023.98px) {
