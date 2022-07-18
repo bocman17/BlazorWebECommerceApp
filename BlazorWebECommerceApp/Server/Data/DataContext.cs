@@ -15,12 +15,23 @@
             modelBuilder.Entity<ProductVariant>()
                 .HasKey(p => new { p.ProductId, p.ProductTypeId });
 
+            modelBuilder.Entity<OrderItem>()
+                .HasKey(oi => new { oi.OrderId, oi.ProductId, oi.ProductTypeId });
+
             modelBuilder.Entity<ProductVariant>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<ProductVariant>()
                 .Property(p => p.OriginalPrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Order>()
+                .Property(p => p.TotalPrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<OrderItem>()
+                .Property(p => p.TotalPrice)
                 .HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<ProductType>().HasData(
@@ -272,5 +283,7 @@
         public DbSet<ProductVariant> ProductVariants { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }
