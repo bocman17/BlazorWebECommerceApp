@@ -1,5 +1,6 @@
 ﻿@page "/register"
 @inject IAuthService AuthService
+@inject NavigationManager NavigationManager 
 
 <PageTitle>Registration</PageTitle>
 
@@ -55,10 +56,11 @@
             messageCssClass = "text-success";
             InvokeAsync(StateHasChanged);
             await Task.Delay(3000);
-            user.Email = string.Empty;
-            user.Password = string.Empty;
-            user.ConfirmPassword = string.Empty;
-            message = string.Empty;
+            NavigationManager.NavigateTo("");
+            //user.Email = string.Empty;
+            //user.Password = string.Empty;
+            //user.ConfirmPassword = string.Empty;
+            //message = string.Empty;
     }
     }
 }
