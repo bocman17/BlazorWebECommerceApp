@@ -54,7 +54,7 @@
         else
         {
             messageCssClass = "text-success";
-            InvokeAsync(StateHasChanged);
+            await InvokeAsync(StateHasChanged);
             await Task.Delay(3000);
             NavigationManager.NavigateTo("");
             //user.Email = string.Empty;

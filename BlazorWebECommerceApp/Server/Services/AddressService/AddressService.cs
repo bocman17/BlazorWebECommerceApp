@@ -29,6 +29,7 @@
                 dbAddress.City = address.City;
                 dbAddress.Street = address.Street;
                 dbAddress.Zip = address.Zip;
+                response.Data = dbAddress;
             }
             await _context.SaveChangesAsync();
             return response;
