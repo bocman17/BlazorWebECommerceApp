@@ -14,9 +14,8 @@
         Task SearchProducts(string searchText, int page);
         Task<List<string>> GetProductSearchSuggestions(string searchText);
         Task GetAdminProducts();
-        //Task AddProduct(Product product);
-        //Task UpdateProduct(Product product);
-        //Task DeleteProduct(int id);
-        //Product CreateNewProduct();
+        Task<Product> CreateProduct(Product product);
+        Task<Product> UpdateProduct(Product product);
+        Task DeleteProduct(Product product);
     }
 }
