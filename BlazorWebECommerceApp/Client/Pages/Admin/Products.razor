@@ -28,30 +28,39 @@ else
         <tbody>
             <Virtualize Items="ProductService.AdminProducts" Context="product">
                 <tr>
-                    <td><img src="@product.ImageUrl" /></td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(product.ImageUrl))
+                        {
+                            <img src="@product.ImageUrl" alt="@product.Title"/>
+                        }
+                        else if(product.Images.Count > 0)
+                        {
+                            <img src="@product.Images[0].Data" alt="@product.Title"/>
+                        }
+                    </td>
                     <td>@product.Title</td>
                     <td>
                         @foreach (var variant in product.Variants)
-                        {
-                        <span>@variant.ProductType.Name</span>
+                            {
+                            <span>@variant.ProductType.Name</span>
 
-                        <br />
-                        }
-                </td>
-                <td>
-                    @foreach (var variant in product.Variants)
-                        {
-                        <span>@variant.Price</span>
+                            <br />
+                            }
+                    </td>
+                    <td>
+                        @foreach (var variant in product.Variants)
+                            {
+                            <span>@variant.Price</span>
 
-                        <br />
-                        }
-                </td>
-                <td>@(product.Visible ? "✔️" : "")</td>
-                <td>
-                    <button class="btn btn-primary" @onclick="(() => EditProduct(product.Id))">
-                        <i class="oi oi-pencil"></i>
-                    </button>
-                </td>
+                            <br />
+                            }
+                    </td>
+                    <td>@(product.Visible ? "✔️" : "")</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="(() => EditProduct(product.Id))">
+                            <i class="oi oi-pencil"></i>
+                        </button>
+                    </td>
             </tr>
         </Virtualize>
     </tbody>
