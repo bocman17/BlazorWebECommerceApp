@@ -1,6 +1,6 @@
 ﻿@page "/"
 @page "/search/{searchText}/{page:int}"
-@page "/{categoryUrl}"
+@page "/{categoryUrl}/{page:int}"
 @inject IProductService ProductService
 
 <PageTitle>My Shop</PageTitle>
@@ -30,7 +30,7 @@ else
         }
         else
         {
-            await ProductService.GetProducts(CategoryUrl);
+            await ProductService.GetProducts(CategoryUrl, Page);
         }
     }
 }

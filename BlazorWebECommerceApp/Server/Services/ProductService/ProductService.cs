@@ -120,16 +120,34 @@
             return response;
         }
 
-        public async Task<ServiceResponse<List<Product>>> GetProductsByCategory(string categoryUrl)
+        public async Task<ServiceResponse<ProductSearchResult>> GetProductsByCategory(string categoryUrl, int page)
         {
-            var response = new ServiceResponse<List<Product>>()
-            {
-                Data = await _context.Products
+            var pageResult = 3f;
+            var pageCount = Math.Ceiling(
+                (await _context.Products
                 .Where(p => p.Category.Url.ToLower().Equals(categoryUrl.ToLower()) &&
                     p.Visible && !p.Deleted)
                 .Include(p => p.Variants.Where(v => v.Visible && !v.Deleted))
                 .Include(p => p.Images)
-                .ToListAsync()
+                .ToListAsync()).Count / pageResult);
+
+            var products = await _context.Products
+                .Where(p => p.Category.Url.ToLower().Equals(categoryUrl.ToLower()) &&
+                    p.Visible && !p.Deleted)
+                .Include(p => p.Variants.Where(v => v.Visible && !v.Deleted))
+                .Include(p => p.Images)
+                .Skip((page - 1) * (int)pageResult)
+                .Take((int)pageResult)
+                .ToListAsync();
+
+            var response = new ServiceResponse<ProductSearchResult>()
+            {
+                Data = new ProductSearchResult
+                {
+                    Products = products,
+                    CurrentPage = page,
+                    Pages = (int)pageCount
+                }
             };
             return response;
         }
