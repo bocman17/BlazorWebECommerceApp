@@ -3,7 +3,14 @@
 
 @if (ProductService.Products == null || ProductService.Products.Count == 0)
 {
-    <span>@ProductService.Message</span>
+    @if (ProductService.Message.Contains("Loading"))
+    {
+        <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true" />
+    }
+    else
+    {
+        <span>@ProductService.Message</span>
+    }
 }
 else
 {
@@ -48,7 +55,7 @@ else
             </a>
         }
     }
-    else if(ProductService.LastCategoryText.Length > 0)
+    else if (ProductService.LastCategoryText.Length > 0)
     {
         @for (int i = 1; i <= ProductService.PageCount; i++)
         {

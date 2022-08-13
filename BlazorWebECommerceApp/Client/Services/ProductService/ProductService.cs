@@ -17,7 +17,7 @@ namespace BlazorWebECommerceApp.Client.Services.ProductService
         public string LastCategoryText { get; set; } = string.Empty;
         public List<Product> AdminProducts { get; set; } = new List<Product>();
 
-        public event Action ProductsChanged;
+        public event Action? ProductsChanged;
 
         public async Task<Product> CreateProduct(Product product)
         {

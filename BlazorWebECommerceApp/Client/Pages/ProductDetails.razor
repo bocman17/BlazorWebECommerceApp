@@ -4,7 +4,9 @@
 
 @if (product == null)
 {
-    <span>@message</span>
+    <MudContainer Class="d-flex align-center justify-center mud-width-full"  style="height:100vh;">
+        <MudProgressCircular Color="Color.Primary" Style="height:150px;width:150px;" Indeterminate="true" />
+    </MudContainer>
 }
 else
 {
